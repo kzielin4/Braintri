@@ -1,6 +1,7 @@
 buildscript {
 	ext {
 		springBootVersion = '1.5.9.RELEASE'
+		querydslVersion = '4.1.3'
 	}
 	repositories {
 		mavenCentral()
@@ -12,6 +13,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
 group = 'pl.braintri.company'
@@ -22,6 +24,27 @@ repositories {
 	mavenCentral()
 }
 
+//ext {
+//	queryDslVersion = '4.1.4'
+//	javaGeneratedSources = file("$buildDir/generated-sources/java")
+//}
+//
+//compileJava {
+//	doFirst {
+//		javaGeneratedSources.mkdirs()
+//	}
+//	options.compilerArgs += [
+//			'-parameters', '-s', javaGeneratedSources
+//	]
+//}
+//
+//idea {
+//	module {
+//		sourceDirs += file('generated/')
+//		generatedSourceDirs += file('generated/')
+//	}
+//}
+
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
@@ -29,6 +52,9 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.session:spring-session')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile "com.querydsl:querydsl-root:$querydslVersion"
+	compile "com.querydsl:querydsl-jpa:$querydslVersion"
+	compile "com.querydsl:querydsl-apt:$querydslVersion:jpa"
 
 	compile group: 'org.json', name: 'json', version: '20171018'
 

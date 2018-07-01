@@ -5,8 +5,9 @@ import java.io.Serializable;
 public class PositionDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    Long id;
-    String name;
+    private Long id;
+    private String name;
+    private Long ammountOfAssignedWorkers;
 
     public PositionDto() {
     }
@@ -26,5 +27,13 @@ public class PositionDto implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getAmmountOfAssignedWorkers() {
+        return ammountOfAssignedWorkers;
+    }
+
+    public void setAmmountOfAssignedWorkers(Long ammountOfAssignedWorkers) {
+        this.ammountOfAssignedWorkers = ammountOfAssignedWorkers;
     }
 }

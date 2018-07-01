@@ -1,9 +1,15 @@
 package pl.braintri.company.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.data.repository.cdi.Eager;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(uniqueConstraints=@UniqueConstraint(columnNames={"name"}))
@@ -22,6 +28,10 @@ public class Position implements Serializable, SimpleIdEntity<Long> {
     @Column(nullable = false)
     private Long version;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "position",fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<Worker> workers;
 
     @Override
     public Long getId() {
@@ -45,5 +55,13 @@ public class Position implements Serializable, SimpleIdEntity<Long> {
     }
 
     public Position() {
+    }
+
+    public List<Worker> getWorkers() {
+        return workers;
+    }
+
+    public void setWorkers(List<Worker> workers) {
+        this.workers = workers;
     }
 }

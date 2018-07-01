@@ -14,6 +14,7 @@ public class PositionMapper {
         PositionDto positionDto = new PositionDto();
         positionDto.setId(position.getId());
         positionDto.setName(position.getName());
+        positionDto.setAmmountOfAssignedWorkers(Long.valueOf(position.getWorkers().size()));
         return  positionDto;
 
     }

@@ -9,10 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 @EntityScan(basePackageClasses = {CompanyApplication.class})
-@EnableGlobalMethodSecurity(securedEnabled = true)
 @SpringBootApplication
-@EnableScheduling
-@EnableAsync
 public class CompanyApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
