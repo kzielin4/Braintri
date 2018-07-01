@@ -53,15 +53,14 @@ public class WorkerService {
 
     @Transactional
     public List<WorkerDto> getAllWorkersDto(SearchCriteria searchCriteria) {
-        WorkerPredicatesBuilder builder = new WorkerPredicatesBuilder().with(searchCriteria);
-
-        Iterable<Worker> results = workerRepository.findAll(builder.build());
         List<WorkerDto> WorkerDtoList = new ArrayList<>();
         if (searchCriteria == null) {
             for (Worker position :  workerRepository.findAll()) {
                 WorkerDtoList.add(workerMapper.dbToDto(position));
             }
         } else {
+            WorkerPredicatesBuilder builder = new WorkerPredicatesBuilder().with(searchCriteria);
+
             for (Worker position : workerRepository.findAll(builder.build())) {
                 WorkerDtoList.add(workerMapper.dbToDto(position));
             }
